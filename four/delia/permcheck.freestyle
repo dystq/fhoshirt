@@ -1,4 +1,6 @@
+B = array of 100000 0s
 for i from 0 to n-1:
-	B[A[i]] = A[i];
-if B[0]==1 and B[n-1]==n return true;
+	if A[i] > 100000 or B[A[i] != 0 return false;
+	else B[A[i]] = 1;
+if B = array of 100000 1s return true;
 else return false;
