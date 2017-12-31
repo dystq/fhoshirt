@@ -7,16 +7,16 @@ Eg: A = B in {0,1}, K = 11
 Expected: 0
 Should be: 1
 
-Pretty sure 99% of languages have 0%7 = 0 and not undefined or some crazy shit.
+Pretty sure 99% of languages have 0 % 11 = 0 and not undefined or some crazy shit.
 
 I've made a ticket to let them know.
 
 Okay I think this problem has a one-line solution.
 
 Some representative cases:
-[0], 5 -> 1
-[1], 5 -> 0
-[5], 5 -> 1
+[0,0], 5 -> 1
+[1,1], 5 -> 0
+[5,5], 5 -> 1
 [0,4], 5 -> 1
 [0,5], 5 -> 2
 [1,5], 5 -> 1
@@ -25,9 +25,9 @@ Some representative cases:
 
 I think maybe easiest way is to divide everything by the divisor, then the problem becomes determining number of integers (divisible by "1") in the range. Taking above cases:
 
-[0.0] -> 1
-[0.2] -> 0
-[1.0] -> 1
+[0.0 , 0.0] -> 1
+[0.2 , 0.2] -> 0
+[1.0 , 1.0] -> 1
 [0.0 , 0.8] -> 1
 [0.0 , 1.0] -> 2
 [0.2 , 1.0] -> 1
