@@ -1,0 +1,53 @@
+Writing this because need to repent for lazy incomplete thinking
+And release ragexiety from lazy incomplete thinking of the problem author.
+
+First, I believe the test cases are wrong because 0 is divisible by all integers, but their cases imply that 0 is divisible by nothing.
+
+Eg: A = B in {0,1}, K = 11 
+Expected: 0
+Should be: 1
+
+Pretty sure 99% of languages have 0%7 = 0 and not undefined or some crazy shit.
+
+I've made a ticket to let them know.
+
+Okay I think this problem has a one-line solution.
+
+Some representative cases:
+[0], 5 -> 1
+[1], 5 -> 0
+[5], 5 -> 1
+[0,4], 5 -> 1
+[0,5], 5 -> 2
+[1,5], 5 -> 1
+[1,6], 5 -> 1
+[4,6], 5 -> 1
+
+I think maybe easiest way is to divide everything by the divisor, then the problem becomes determining number of integers (divisible by "1") in the range. Taking above cases:
+
+[0.0] -> 1
+[0.2] -> 0
+[1.0] -> 1
+[0.0 , 0.8] -> 1
+[0.0 , 1.0] -> 2
+[0.2 , 1.0] -> 1
+[0.2 , 1.2] -> 1
+[0.8 , 1.2] -> 1
+
+... (-1)------(0)------(1)------(2)-- ...
+             (ab)      
+                 ab
+                       (ab)
+              (a)  b  
+              (a)      (b)
+                   a   (b)
+                   a   (1) b
+                     a (1) b
+
+
+When a or b lands on an integer we don't need to perturb. If a doesn't land on integer, we can safetly ceiling a without introducing a new integer into the range (because range shrinks) and without losing an existing one (because a can't possibly increase past b). Similarly we can safely floor b.
+
+So I think simplest solution is
+
+floor(b/k) - ceiling(a/k) + 1 
+                 
